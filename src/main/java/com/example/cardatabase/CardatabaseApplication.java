@@ -13,36 +13,36 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
 
 import java.util.Arrays;
-import java.util.List;
 
 @SpringBootApplication
 public class CardatabaseApplication {
 
-	private static Logger logger= LoggerFactory.getLogger(CardatabaseApplication.class);
+    private static Logger logger = LoggerFactory.getLogger(CardatabaseApplication.class);
 
-	@Autowired
-	private CarRepository repository;
+    @Autowired
+    private CarRepository repository;
 
-	@Autowired
-	private OwnerRepository ownerRepository;
+    @Autowired
+    private OwnerRepository ownerRepository;
 
-	public static void main(String[] args) {
-		SpringApplication.run(CardatabaseApplication.class, args);
-		logger.info("Hello spring boot");
+    public static void main(String[] args) {
+        SpringApplication.run(CardatabaseApplication.class, args);
+        logger.info("Hello spring boot");
 
-	}
+    }
 
-	@Bean
-	CommandLineRunner runner(){
-		return args -> {
-			Owner ownerFirst=new Owner("Alex", "Varfolomeev");
-			Owner ownerSecond=new Owner("Sergey", "Khil");
-			ownerRepository.saveAll(Arrays.asList(ownerFirst,ownerSecond));
-			repository.save(new Car("Bmw","m4","black", "335AOB", 1980,33000,ownerFirst));
-			repository.save(new Car("Bmw","asd","asd", "asd", 1990,33000,ownerFirst));
-			repository.save(new Car("Nissan","Leaf","red", "228BB", 1995,22200,ownerSecond));
-			repository.save(new Car("Bmw","m4","black", "335AOB", 1985,33000,ownerFirst));
-		};
-	}
+    @Bean
+    CommandLineRunner runner() {
+        return args -> {
+            Owner ownerFirst = new Owner("Alex", "Varfolomeev");
+            Owner ownerSecond = new Owner("Sergey", "Khil");
+            Owner ownerThird = new Owner("Vasya", "Pavlov");
+            ownerRepository.saveAll(Arrays.asList(ownerFirst, ownerSecond, ownerThird));
+            repository.save(new Car("Bmw", "m4", "black", "335AOB", 1980, 33000, ownerFirst));
+            repository.save(new Car("Bmw", "asd", "asd", "asd", 1990, 33000, ownerFirst));
+            repository.save(new Car("Nissan", "Leaf", "red", "228BB", 1995, 22200, ownerSecond));
+            repository.save(new Car("Bmw", "m4", "black", "335AOB", 1985, 33000, ownerThird));
+        };
+    }
 
 }
