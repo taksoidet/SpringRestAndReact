@@ -1,6 +1,7 @@
 package com.example.cardatabase.domain;
 
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -21,6 +22,7 @@ public class Owner {
 
 
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "owner")
+    @JsonIgnore
     private List<Car> cars;
 
     public Owner(String firstname, String lastname) {
